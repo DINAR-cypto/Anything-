@@ -1,139 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Class 6-7 Algebra Quiz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Funny MCQ Quiz</title>
 
 <style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family: Arial, sans-serif;
-    }
 
-    body{
-        background:#0f172a;
-        color:white;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        min-height:100vh;
-        padding:20px;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
-    .quiz-container{
-        width:100%;
-        max-width:700px;
-        background:#1e293b;
-        padding:30px;
-        border-radius:20px;
-        box-shadow:0 0 20px rgba(0,0,0,0.4);
-    }
+body{
+    background:#0f172a;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
 
-    h1{
-        text-align:center;
-        margin-bottom:25px;
-        color:#38bdf8;
-    }
+.container{
+    width:100%;
+    max-width:700px;
+    background:#1e293b;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
 
-    .question-number{
-        margin-bottom:10px;
-        color:#94a3b8;
-    }
+.title{
+    text-align:center;
+    margin-bottom:20px;
+}
 
-    .question{
-        font-size:24px;
-        margin-bottom:20px;
-        line-height:1.5;
-    }
+.title h1{
+    color:#38bdf8;
+    margin-bottom:10px;
+}
 
-    .options{
-        display:flex;
-        flex-direction:column;
-        gap:15px;
-    }
+.title p{
+    color:#cbd5e1;
+}
 
-    .option{
-        background:#334155;
-        padding:15px;
-        border-radius:12px;
-        cursor:pointer;
-        transition:0.3s;
-        border:2px solid transparent;
-    }
+.image-box{
+    text-align:center;
+    margin-bottom:20px;
+}
 
-    .option:hover{
-        background:#475569;
-    }
+.image-box img{
+    width:100%;
+    max-height:400px;
+    object-fit:cover;
+    border-radius:15px;
+}
 
-    .option.selected{
-        border-color:#38bdf8;
-        background:#0ea5e9;
-    }
+.question-number{
+    color:#94a3b8;
+    margin-bottom:10px;
+}
 
-    button{
-        margin-top:25px;
-        width:100%;
-        padding:15px;
-        border:none;
-        border-radius:12px;
-        background:#38bdf8;
-        color:white;
-        font-size:18px;
-        cursor:pointer;
-        transition:0.3s;
-    }
+.question{
+    font-size:24px;
+    margin-bottom:20px;
+    line-height:1.5;
+}
 
-    button:hover{
-        background:#0ea5e9;
-    }
+.options{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
 
-    .result{
-        text-align:center;
-    }
+.option{
+    background:#334155;
+    padding:15px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.3s;
+    border:2px solid transparent;
+}
 
-    .result h2{
-        margin-bottom:20px;
-        color:#22c55e;
-    }
+.option:hover{
+    background:#475569;
+}
 
-    .score-box{
-        background:#334155;
-        padding:20px;
-        border-radius:15px;
-        margin-bottom:25px;
-    }
+.option.selected{
+    background:#0ea5e9;
+    border-color:#38bdf8;
+}
 
-    .answer-sheet{
-        text-align:left;
-        margin-top:20px;
-    }
+button{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    border:none;
+    border-radius:12px;
+    background:#38bdf8;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
 
-    .answer-item{
-        background:#334155;
-        padding:15px;
-        margin-bottom:15px;
-        border-radius:12px;
-    }
+button:hover{
+    background:#0ea5e9;
+}
 
-    .correct{
-        color:#22c55e;
-    }
+.result{
+    text-align:center;
+}
 
-    .wrong{
-        color:#ef4444;
-    }
+.correct{
+    color:#22c55e;
+}
+
+.wrong{
+    color:#ef4444;
+}
+
+.credit{
+    text-align:center;
+    margin-top:25px;
+    color:#94a3b8;
+    font-size:14px;
+}
+
+.credit span{
+    color:#38bdf8;
+    font-weight:bold;
+}
+
 </style>
 </head>
+
 <body>
 
-<div class="quiz-container">
+<div class="container">
 
-    <h1>Class 6-7 Algebra Quiz</h1>
+    <div class="title">
+        <h1>Funny MCQ Quiz</h1>
+        <p>Select the correct answer and enjoy 😎</p>
+    </div>
 
     <div id="quiz-box">
+
+        <div class="image-box">
+            <img src="photo.jpg" alt="Quiz Image">
+        </div>
 
         <div class="question-number" id="question-number"></div>
 
@@ -141,8 +159,14 @@
 
         <div class="options" id="options"></div>
 
-        <button onclick="submitAnswer()">Submit</button>
+        <button onclick="submitAnswer()">
+            Submit Answer
+        </button>
 
+    </div>
+
+    <div class="credit">
+        Developed by <span>Dinar</span>
     </div>
 
 </div>
@@ -152,63 +176,21 @@
 const quizData = [
 
 {
-question: "If x = 4, what is the value of 2x + 5 ?",
-options: ["10", "11", "12", "13"],
-answer: "13"
+question:"এই ব্যক্তি তার নাম কি?",
+options:[
+"শুধু আনাস",
+"কচি আনাস 😎"
+],
+answer:"কচি আনাস 😎"
 },
 
 {
-question: "a + 7 = 15 হলে a এর মান কত?",
-options: ["6", "7", "8", "9"],
-answer: "8"
-},
-
-{
-question: "3y = 21 হলে y এর মান কত?",
-options: ["6", "7", "8", "9"],
-answer: "7"
-},
-
-{
-question: "12 - b = 5 হলে b এর মান কত?",
-options: ["5", "6", "7", "8"],
-answer: "7"
-},
-
-{
-question: "5m = 35 হলে m এর মান কত?",
-options: ["5", "6", "7", "8"],
-answer: "7"
-},
-
-{
-question: "2x + 3 = 11 হলে x এর মান কত?",
-options: ["3", "4", "5", "6"],
-answer: "4"
-},
-
-{
-question: "একটি সংখ্যার দ্বিগুণ 18। সংখ্যাটি কত?",
-options: ["7", "8", "9", "10"],
-answer: "9"
-},
-
-{
-question: "4p = 2p + 10 হলে p এর মান কত?",
-options: ["3", "4", "5", "6"],
-answer: "5"
-},
-
-{
-question: "7x - 9 = 26 হলে x এর মান কত?",
-options: ["4", "5", "6", "7"],
-answer: "5"
-},
-
-{
-question: "3(a+2)=18 হলে a এর মান কত?",
-options: ["2", "3", "4", "5"],
-answer: "4"
+question:"তার ফেমাস ডায়ালগ কোনটি?",
+options:[
+"ভাই আমি গেমে আসতেছি",
+"ভাই কারেন্ট নাই ,এখন গেম খেলতে পারবো না 😶"
+],
+answer:"ভাই কারেন্ট নাই ,এখন গেম খেলতে পারবো না 😶"
 }
 
 ];
@@ -216,35 +198,49 @@ answer: "4"
 let currentQuestion = 0;
 let score = 0;
 let selectedOption = null;
-let userAnswers = [];
 
-const questionEl = document.getElementById("question");
-const optionsEl = document.getElementById("options");
-const questionNumberEl = document.getElementById("question-number");
-const quizBox = document.getElementById("quiz-box");
+const questionEl =
+document.getElementById("question");
+
+const optionsEl =
+document.getElementById("options");
+
+const questionNumberEl =
+document.getElementById("question-number");
+
+const quizBox =
+document.getElementById("quiz-box");
 
 function loadQuestion(){
 
     selectedOption = null;
 
-    const currentQuiz = quizData[currentQuestion];
+    const currentQuiz =
+    quizData[currentQuestion];
 
-    questionNumberEl.innerText =
-    `Question ${currentQuestion + 1} of ${quizData.length}`;
+    questionNumberEl.innerHTML =
+    "Question " +
+    (currentQuestion + 1)
+    + " of " +
+    quizData.length;
 
-    questionEl.innerText = currentQuiz.question;
+    questionEl.innerHTML =
+    currentQuiz.question;
 
     optionsEl.innerHTML = "";
 
-    currentQuiz.options.forEach(option => {
+    currentQuiz.options.forEach(option=>{
 
-        const div = document.createElement("div");
+        const div =
+        document.createElement("div");
 
         div.classList.add("option");
 
-        div.innerText = option;
+        div.innerHTML = option;
 
-        div.onclick = () => selectOption(div, option);
+        div.onclick = ()=>{
+            selectOption(div,option);
+        };
 
         optionsEl.appendChild(div);
 
@@ -252,9 +248,10 @@ function loadQuestion(){
 
 }
 
-function selectOption(element, option){
+function selectOption(element,option){
 
-    document.querySelectorAll(".option").forEach(el => {
+    document.querySelectorAll(".option")
+    .forEach(el=>{
         el.classList.remove("selected");
     });
 
@@ -266,17 +263,14 @@ function selectOption(element, option){
 function submitAnswer(){
 
     if(selectedOption === null){
+
         alert("Please select an answer!");
+
         return;
     }
 
-    const correctAnswer = quizData[currentQuestion].answer;
-
-    userAnswers.push({
-        question: quizData[currentQuestion].question,
-        selected: selectedOption,
-        correct: correctAnswer
-    });
+    const correctAnswer =
+    quizData[currentQuestion].answer;
 
     if(selectedOption === correctAnswer){
         score++;
@@ -285,8 +279,11 @@ function submitAnswer(){
     currentQuestion++;
 
     if(currentQuestion < quizData.length){
+
         loadQuestion();
+
     }else{
+
         showResult();
     }
 
@@ -294,59 +291,43 @@ function submitAnswer(){
 
 function showResult(){
 
-    let wrong = quizData.length - score;
-    let percentage = (score / quizData.length) * 100;
+    let wrong =
+    quizData.length - score;
 
-    let answerHTML = "";
-
-    userAnswers.forEach((item, index) => {
-
-        const isCorrect = item.selected === item.correct;
-
-        answerHTML += `
-        <div class="answer-item">
-            <h3>Q${index + 1}: ${item.question}</h3>
-
-            <p>
-            Your Answer:
-            <span class="${isCorrect ? 'correct' : 'wrong'}">
-            ${item.selected}
-            </span>
-            </p>
-
-            <p>
-            Correct Answer:
-            <span class="correct">
-            ${item.correct}
-            </span>
-            </p>
-        </div>
-        `;
-    });
+    let percentage =
+    ((score / quizData.length) * 100)
+    .toFixed(0);
 
     quizBox.innerHTML = `
+
     <div class="result">
 
-        <h2>Quiz Completed!</h2>
+        <h1>Quiz Completed 😎</h1>
 
-        <div class="score-box">
+        <br>
 
-            <h3>Total Questions: ${quizData.length}</h3>
-            <h3>Correct Answers: ${score}</h3>
-            <h3>Wrong Answers: ${wrong}</h3>
-            <h3>Marks: ${percentage}%</h3>
+        <h2 class="correct">
+            Correct Answers: ${score}
+        </h2>
 
-        </div>
+        <br>
 
-        <div class="answer-sheet">
+        <h2 class="wrong">
+            Wrong Answers: ${wrong}
+        </h2>
 
-            <h2>Answer Sheet</h2>
+        <br>
 
-            ${answerHTML}
+        <h2>
+            Final Score: ${percentage}%
+        </h2>
 
-        </div>
+        <button onclick="location.reload()">
+            Restart Quiz
+        </button>
 
     </div>
+
     `;
 }
 
