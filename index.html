@@ -1,539 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Professional Notes App</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Class 6-7 Algebra Quiz</title>
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-    background:#0f172a;
-    color:white;
-    min-height:100vh;
-}
-
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:20px;
-}
-
-.header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-    gap:10px;
-    flex-wrap:wrap;
-}
-
-.logo{
-    font-size:28px;
-    font-weight:700;
-}
-
-.logo span{
-    color:#38bdf8;
-}
-
-.top-buttons{
-    display:flex;
-    gap:10px;
-}
-
-button{
-    border:none;
-    border-radius:10px;
-    padding:12px 18px;
-    cursor:pointer;
-    font-weight:600;
-    transition:0.2s;
-}
-
-button:hover{
-    transform:scale(1.03);
-}
-
-.btn-primary{
-    background:#38bdf8;
-    color:black;
-}
-
-.btn-danger{
-    background:#ef4444;
-    color:white;
-}
-
-.btn-edit{
-    background:#22c55e;
-    color:black;
-}
-
-.btn-gray{
-    background:#334155;
-    color:white;
-}
-
-.search{
-    margin-bottom:20px;
-}
-
-.search input{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:12px;
-    background:#1e293b;
-    color:white;
-    font-size:15px;
-}
-
-.card{
-    background:#1e293b;
-    padding:20px;
-    border-radius:18px;
-    margin-bottom:25px;
-    border:1px solid #334155;
-}
-
-.card h2{
-    margin-bottom:15px;
-}
-
-input, textarea{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:12px;
-    background:#334155;
-    color:white;
-    margin-top:10px;
-    font-size:15px;
-    outline:none;
-}
-
-textarea{
-    min-height:150px;
-    resize:vertical;
-}
-
-.notes-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:18px;
-}
-
-.note{
-    background:#1e293b;
-    border-radius:18px;
-    padding:20px;
-    border:1px solid #334155;
-}
-
-.note h3{
-    margin-bottom:12px;
-    font-size:20px;
-    word-break:break-word;
-}
-
-.note p{
-    color:#cbd5e1;
-    line-height:1.7;
-    white-space:pre-wrap;
-    word-break:break-word;
-}
-
-.note-date{
-    margin-top:14px;
-    color:#94a3b8;
-    font-size:12px;
-}
-
-.actions{
-    display:flex;
-    gap:10px;
-    margin-top:18px;
-    flex-wrap:wrap;
-}
-
-.empty{
-    text-align:center;
-    padding:50px;
-    color:#94a3b8;
-}
-
-.badge{
-    background:#22c55e;
-    color:black;
-    padding:6px 12px;
-    border-radius:999px;
-    font-size:13px;
-    font-weight:600;
-}
-
-.hidden{
-    display:none;
-}
-
-@media(max-width:600px){
-
-    .logo{
-        font-size:24px;
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: Arial, sans-serif;
     }
 
-}
+    body{
+        background:#0f172a;
+        color:white;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+        padding:20px;
+    }
 
+    .quiz-container{
+        width:100%;
+        max-width:700px;
+        background:#1e293b;
+        padding:30px;
+        border-radius:20px;
+        box-shadow:0 0 20px rgba(0,0,0,0.4);
+    }
+
+    h1{
+        text-align:center;
+        margin-bottom:25px;
+        color:#38bdf8;
+    }
+
+    .question-number{
+        margin-bottom:10px;
+        color:#94a3b8;
+    }
+
+    .question{
+        font-size:24px;
+        margin-bottom:20px;
+        line-height:1.5;
+    }
+
+    .options{
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .option{
+        background:#334155;
+        padding:15px;
+        border-radius:12px;
+        cursor:pointer;
+        transition:0.3s;
+        border:2px solid transparent;
+    }
+
+    .option:hover{
+        background:#475569;
+    }
+
+    .option.selected{
+        border-color:#38bdf8;
+        background:#0ea5e9;
+    }
+
+    button{
+        margin-top:25px;
+        width:100%;
+        padding:15px;
+        border:none;
+        border-radius:12px;
+        background:#38bdf8;
+        color:white;
+        font-size:18px;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    button:hover{
+        background:#0ea5e9;
+    }
+
+    .result{
+        text-align:center;
+    }
+
+    .result h2{
+        margin-bottom:20px;
+        color:#22c55e;
+    }
+
+    .score-box{
+        background:#334155;
+        padding:20px;
+        border-radius:15px;
+        margin-bottom:25px;
+    }
+
+    .answer-sheet{
+        text-align:left;
+        margin-top:20px;
+    }
+
+    .answer-item{
+        background:#334155;
+        padding:15px;
+        margin-bottom:15px;
+        border-radius:12px;
+    }
+
+    .correct{
+        color:#22c55e;
+    }
+
+    .wrong{
+        color:#ef4444;
+    }
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<div class="quiz-container">
 
-    <!-- HEADER -->
+    <h1>Class 6-7 Algebra Quiz</h1>
 
-    <div class="header">
+    <div id="quiz-box">
 
-        <div class="logo">
-            My<span>Notes</span>
-        </div>
+        <div class="question-number" id="question-number"></div>
 
-        <div class="top-buttons">
+        <div class="question" id="question"></div>
 
-            <div id="adminBadge" class="badge hidden">
-                Admin Mode
-            </div>
+        <div class="options" id="options"></div>
 
-            <button 
-                class="btn-gray"
-                onclick="loginAdmin()"
-            >
-                Admin Login
-            </button>
-
-            <button 
-                class="btn-danger hidden"
-                id="logoutBtn"
-                onclick="logoutAdmin()"
-            >
-                Logout
-            </button>
-
-        </div>
+        <button onclick="submitAnswer()">Submit</button>
 
     </div>
-
-    <!-- SEARCH -->
-
-    <div class="search">
-
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Search notes..."
-            onkeyup="renderNotes()"
-        >
-
-    </div>
-
-    <!-- NOTE FORM -->
-
-    <div 
-        class="card hidden"
-        id="noteFormCard"
-    >
-
-        <h2 id="formTitle">
-            Create Note
-        </h2>
-
-        <input
-            type="text"
-            id="noteTitle"
-            placeholder="Note title"
-        >
-
-        <textarea
-            id="noteContent"
-            placeholder="Write your note..."
-        ></textarea>
-
-        <button
-            class="btn-primary"
-            onclick="saveNote()"
-        >
-            Save Note
-        </button>
-
-    </div>
-
-    <!-- NOTES -->
-
-    <div 
-        id="notesContainer"
-        class="notes-grid"
-    ></div>
 
 </div>
 
 <script>
 
-const ADMIN_PASSWORD = "1234";
+const quizData = [
 
-let isAdmin = false;
+{
+question: "If x = 4, what is the value of 2x + 5 ?",
+options: ["10", "11", "12", "13"],
+answer: "13"
+},
 
-let notes = JSON.parse(
-    localStorage.getItem("notes")
-) || [];
+{
+question: "a + 7 = 15 হলে a এর মান কত?",
+options: ["6", "7", "8", "9"],
+answer: "8"
+},
 
-let editIndex = null;
+{
+question: "3y = 21 হলে y এর মান কত?",
+options: ["6", "7", "8", "9"],
+answer: "7"
+},
 
-function saveLocal(){
+{
+question: "12 - b = 5 হলে b এর মান কত?",
+options: ["5", "6", "7", "8"],
+answer: "7"
+},
 
-    localStorage.setItem(
-        "notes",
-        JSON.stringify(notes)
-    );
+{
+question: "5m = 35 হলে m এর মান কত?",
+options: ["5", "6", "7", "8"],
+answer: "7"
+},
+
+{
+question: "2x + 3 = 11 হলে x এর মান কত?",
+options: ["3", "4", "5", "6"],
+answer: "4"
+},
+
+{
+question: "একটি সংখ্যার দ্বিগুণ 18। সংখ্যাটি কত?",
+options: ["7", "8", "9", "10"],
+answer: "9"
+},
+
+{
+question: "4p = 2p + 10 হলে p এর মান কত?",
+options: ["3", "4", "5", "6"],
+answer: "5"
+},
+
+{
+question: "7x - 9 = 26 হলে x এর মান কত?",
+options: ["4", "5", "6", "7"],
+answer: "5"
+},
+
+{
+question: "3(a+2)=18 হলে a এর মান কত?",
+options: ["2", "3", "4", "5"],
+answer: "4"
 }
 
-function loginAdmin(){
+];
 
-    const pass = prompt(
-        "Enter Admin Password"
-    );
+let currentQuestion = 0;
+let score = 0;
+let selectedOption = null;
+let userAnswers = [];
 
-    if(pass === ADMIN_PASSWORD){
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const questionNumberEl = document.getElementById("question-number");
+const quizBox = document.getElementById("quiz-box");
 
-        isAdmin = true;
+function loadQuestion(){
 
-        document.getElementById(
-            "noteFormCard"
-        ).classList.remove("hidden");
+    selectedOption = null;
 
-        document.getElementById(
-            "logoutBtn"
-        ).classList.remove("hidden");
+    const currentQuiz = quizData[currentQuestion];
 
-        document.getElementById(
-            "adminBadge"
-        ).classList.remove("hidden");
+    questionNumberEl.innerText =
+    `Question ${currentQuestion + 1} of ${quizData.length}`;
 
-        alert("Admin Login Success");
+    questionEl.innerText = currentQuiz.question;
 
-        renderNotes();
+    optionsEl.innerHTML = "";
 
-    }else{
-
-        alert("Wrong Password");
-    }
-}
-
-function logoutAdmin(){
-
-    isAdmin = false;
-
-    document.getElementById(
-        "noteFormCard"
-    ).classList.add("hidden");
-
-    document.getElementById(
-        "logoutBtn"
-    ).classList.add("hidden");
-
-    document.getElementById(
-        "adminBadge"
-    ).classList.add("hidden");
-
-    renderNotes();
-}
-
-function saveNote(){
-
-    const title = document
-        .getElementById("noteTitle")
-        .value.trim();
-
-    const content = document
-        .getElementById("noteContent")
-        .value.trim();
-
-    if(title === "" || content === ""){
-
-        alert("Fill all fields");
-
-        return;
-    }
-
-    const data = {
-
-        title:title,
-
-        content:content,
-
-        date:new Date().toLocaleString()
-    };
-
-    if(editIndex === null){
-
-        notes.unshift(data);
-
-    }else{
-
-        notes[editIndex] = data;
-
-        editIndex = null;
-
-        document.getElementById(
-            "formTitle"
-        ).innerText = "Create Note";
-    }
-
-    saveLocal();
-
-    document.getElementById(
-        "noteTitle"
-    ).value = "";
-
-    document.getElementById(
-        "noteContent"
-    ).value = "";
-
-    renderNotes();
-}
-
-function renderNotes(){
-
-    const container = document
-        .getElementById("notesContainer");
-
-    const search = document
-        .getElementById("searchInput")
-        .value.toLowerCase();
-
-    container.innerHTML = "";
-
-    const filtered = notes.filter(note =>
-
-        note.title.toLowerCase()
-        .includes(search)
-
-        ||
-
-        note.content.toLowerCase()
-        .includes(search)
-    );
-
-    if(filtered.length === 0){
-
-        container.innerHTML = `
-            <div class="empty">
-                No Notes Found
-            </div>
-        `;
-
-        return;
-    }
-
-    filtered.forEach((note,index)=>{
+    currentQuiz.options.forEach(option => {
 
         const div = document.createElement("div");
 
-        div.className = "note";
+        div.classList.add("option");
 
-        let adminButtons = "";
+        div.innerText = option;
 
-        if(isAdmin){
+        div.onclick = () => selectOption(div, option);
 
-            adminButtons = `
+        optionsEl.appendChild(div);
 
-                <div class="actions">
-
-                    <button
-                        class="btn-edit"
-                        onclick="editNote(${index})"
-                    >
-                        Edit
-                    </button>
-
-                    <button
-                        class="btn-danger"
-                        onclick="deleteNote(${index})"
-                    >
-                        Delete
-                    </button>
-
-                </div>
-            `;
-        }
-
-        div.innerHTML = `
-
-            <h3>${note.title}</h3>
-
-            <p>${note.content}</p>
-
-            <div class="note-date">
-                ${note.date}
-            </div>
-
-            ${adminButtons}
-        `;
-
-        container.appendChild(div);
     });
+
 }
 
-function editNote(index){
+function selectOption(element, option){
 
-    const note = notes[index];
-
-    document.getElementById(
-        "noteTitle"
-    ).value = note.title;
-
-    document.getElementById(
-        "noteContent"
-    ).value = note.content;
-
-    document.getElementById(
-        "formTitle"
-    ).innerText = "Edit Note";
-
-    editIndex = index;
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
+    document.querySelectorAll(".option").forEach(el => {
+        el.classList.remove("selected");
     });
+
+    element.classList.add("selected");
+
+    selectedOption = option;
 }
 
-function deleteNote(index){
+function submitAnswer(){
 
-    const ok = confirm(
-        "Delete this note?"
-    );
-
-    if(ok){
-
-        notes.splice(index,1);
-
-        saveLocal();
-
-        renderNotes();
+    if(selectedOption === null){
+        alert("Please select an answer!");
+        return;
     }
+
+    const correctAnswer = quizData[currentQuestion].answer;
+
+    userAnswers.push({
+        question: quizData[currentQuestion].question,
+        selected: selectedOption,
+        correct: correctAnswer
+    });
+
+    if(selectedOption === correctAnswer){
+        score++;
+    }
+
+    currentQuestion++;
+
+    if(currentQuestion < quizData.length){
+        loadQuestion();
+    }else{
+        showResult();
+    }
+
 }
 
-renderNotes();
+function showResult(){
+
+    let wrong = quizData.length - score;
+    let percentage = (score / quizData.length) * 100;
+
+    let answerHTML = "";
+
+    userAnswers.forEach((item, index) => {
+
+        const isCorrect = item.selected === item.correct;
+
+        answerHTML += `
+        <div class="answer-item">
+            <h3>Q${index + 1}: ${item.question}</h3>
+
+            <p>
+            Your Answer:
+            <span class="${isCorrect ? 'correct' : 'wrong'}">
+            ${item.selected}
+            </span>
+            </p>
+
+            <p>
+            Correct Answer:
+            <span class="correct">
+            ${item.correct}
+            </span>
+            </p>
+        </div>
+        `;
+    });
+
+    quizBox.innerHTML = `
+    <div class="result">
+
+        <h2>Quiz Completed!</h2>
+
+        <div class="score-box">
+
+            <h3>Total Questions: ${quizData.length}</h3>
+            <h3>Correct Answers: ${score}</h3>
+            <h3>Wrong Answers: ${wrong}</h3>
+            <h3>Marks: ${percentage}%</h3>
+
+        </div>
+
+        <div class="answer-sheet">
+
+            <h2>Answer Sheet</h2>
+
+            ${answerHTML}
+
+        </div>
+
+    </div>
+    `;
+}
+
+loadQuestion();
 
 </script>
 
