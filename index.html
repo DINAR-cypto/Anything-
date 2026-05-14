@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pro Notes App</title>
+<title>Professional Notes App</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -23,7 +23,7 @@ body{
 }
 
 .container{
-    max-width:1000px;
+    max-width:1100px;
     margin:auto;
     padding:20px;
 }
@@ -33,6 +33,8 @@ body{
     justify-content:space-between;
     align-items:center;
     margin-bottom:25px;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
 .logo{
@@ -44,56 +46,17 @@ body{
     color:#38bdf8;
 }
 
-.search{
-    width:100%;
-    margin-bottom:20px;
-}
-
-.search input{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:12px;
-    background:#1e293b;
-    color:white;
-    font-size:15px;
-}
-
-.card{
-    background:#1e293b;
-    border-radius:18px;
-    padding:20px;
-    margin-bottom:20px;
-}
-
-.card h2{
-    margin-bottom:15px;
-}
-
-input, textarea{
-    width:100%;
-    border:none;
-    outline:none;
-    background:#334155;
-    color:white;
-    border-radius:12px;
-    padding:14px;
-    margin-top:10px;
-    font-size:15px;
-}
-
-textarea{
-    min-height:140px;
-    resize:vertical;
+.top-buttons{
+    display:flex;
+    gap:10px;
 }
 
 button{
     border:none;
-    padding:12px 18px;
     border-radius:10px;
+    padding:12px 18px;
     cursor:pointer;
     font-weight:600;
-    margin-top:12px;
     transition:0.2s;
 }
 
@@ -116,6 +79,54 @@ button:hover{
     color:black;
 }
 
+.btn-gray{
+    background:#334155;
+    color:white;
+}
+
+.search{
+    margin-bottom:20px;
+}
+
+.search input{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#1e293b;
+    color:white;
+    font-size:15px;
+}
+
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:25px;
+    border:1px solid #334155;
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+input, textarea{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#334155;
+    color:white;
+    margin-top:10px;
+    font-size:15px;
+    outline:none;
+}
+
+textarea{
+    min-height:150px;
+    resize:vertical;
+}
+
 .notes-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -126,48 +137,55 @@ button:hover{
     background:#1e293b;
     border-radius:18px;
     padding:20px;
-    position:relative;
     border:1px solid #334155;
 }
 
 .note h3{
-    margin-bottom:10px;
+    margin-bottom:12px;
     font-size:20px;
     word-break:break-word;
 }
 
 .note p{
     color:#cbd5e1;
-    line-height:1.6;
+    line-height:1.7;
     white-space:pre-wrap;
     word-break:break-word;
 }
 
 .note-date{
     margin-top:14px;
-    font-size:12px;
     color:#94a3b8;
+    font-size:12px;
 }
 
 .actions{
     display:flex;
     gap:10px;
     margin-top:18px;
+    flex-wrap:wrap;
 }
 
 .empty{
     text-align:center;
-    padding:40px;
+    padding:50px;
     color:#94a3b8;
 }
 
-@media(max-width:600px){
+.badge{
+    background:#22c55e;
+    color:black;
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+}
 
-    .header{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:10px;
-    }
+.hidden{
+    display:none;
+}
+
+@media(max-width:600px){
 
     .logo{
         font-size:24px;
@@ -182,26 +200,64 @@ button:hover{
 
 <div class="container">
 
+    <!-- HEADER -->
+
     <div class="header">
+
         <div class="logo">
             My<span>Notes</span>
         </div>
+
+        <div class="top-buttons">
+
+            <div id="adminBadge" class="badge hidden">
+                Admin Mode
+            </div>
+
+            <button 
+                class="btn-gray"
+                onclick="loginAdmin()"
+            >
+                Admin Login
+            </button>
+
+            <button 
+                class="btn-danger hidden"
+                id="logoutBtn"
+                onclick="logoutAdmin()"
+            >
+                Logout
+            </button>
+
+        </div>
+
     </div>
 
+    <!-- SEARCH -->
+
     <div class="search">
-        <input 
+
+        <input
             type="text"
             id="searchInput"
             placeholder="Search notes..."
             onkeyup="renderNotes()"
         >
+
     </div>
 
-    <div class="card">
+    <!-- NOTE FORM -->
 
-        <h2 id="formTitle">Create Note</h2>
+    <div 
+        class="card hidden"
+        id="noteFormCard"
+    >
 
-        <input 
+        <h2 id="formTitle">
+            Create Note
+        </h2>
+
+        <input
             type="text"
             id="noteTitle"
             placeholder="Note title"
@@ -212,7 +268,7 @@ button:hover{
             placeholder="Write your note..."
         ></textarea>
 
-        <button 
+        <button
             class="btn-primary"
             onclick="saveNote()"
         >
@@ -221,22 +277,84 @@ button:hover{
 
     </div>
 
-    <div id="notesContainer" class="notes-grid"></div>
+    <!-- NOTES -->
+
+    <div 
+        id="notesContainer"
+        class="notes-grid"
+    ></div>
 
 </div>
 
 <script>
 
-let notes = JSON.parse(localStorage.getItem("notes")) || [];
+const ADMIN_PASSWORD = "1234";
+
+let isAdmin = false;
+
+let notes = JSON.parse(
+    localStorage.getItem("notes")
+) || [];
 
 let editIndex = null;
 
-function saveToLocal(){
+function saveLocal(){
 
     localStorage.setItem(
         "notes",
         JSON.stringify(notes)
     );
+}
+
+function loginAdmin(){
+
+    const pass = prompt(
+        "Enter Admin Password"
+    );
+
+    if(pass === ADMIN_PASSWORD){
+
+        isAdmin = true;
+
+        document.getElementById(
+            "noteFormCard"
+        ).classList.remove("hidden");
+
+        document.getElementById(
+            "logoutBtn"
+        ).classList.remove("hidden");
+
+        document.getElementById(
+            "adminBadge"
+        ).classList.remove("hidden");
+
+        alert("Admin Login Success");
+
+        renderNotes();
+
+    }else{
+
+        alert("Wrong Password");
+    }
+}
+
+function logoutAdmin(){
+
+    isAdmin = false;
+
+    document.getElementById(
+        "noteFormCard"
+    ).classList.add("hidden");
+
+    document.getElementById(
+        "logoutBtn"
+    ).classList.add("hidden");
+
+    document.getElementById(
+        "adminBadge"
+    ).classList.add("hidden");
+
+    renderNotes();
 }
 
 function saveNote(){
@@ -251,12 +369,12 @@ function saveNote(){
 
     if(title === "" || content === ""){
 
-        alert("Please fill all fields");
+        alert("Fill all fields");
 
         return;
     }
 
-    const noteData = {
+    const data = {
 
         title:title,
 
@@ -267,11 +385,11 @@ function saveNote(){
 
     if(editIndex === null){
 
-        notes.unshift(noteData);
+        notes.unshift(data);
 
     }else{
 
-        notes[editIndex] = noteData;
+        notes[editIndex] = data;
 
         editIndex = null;
 
@@ -280,7 +398,7 @@ function saveNote(){
         ).innerText = "Create Note";
     }
 
-    saveToLocal();
+    saveLocal();
 
     document.getElementById(
         "noteTitle"
@@ -295,9 +413,8 @@ function saveNote(){
 
 function renderNotes(){
 
-    const container = document.getElementById(
-        "notesContainer"
-    );
+    const container = document
+        .getElementById("notesContainer");
 
     const search = document
         .getElementById("searchInput")
@@ -307,18 +424,20 @@ function renderNotes(){
 
     const filtered = notes.filter(note =>
 
-        note.title.toLowerCase().includes(search)
+        note.title.toLowerCase()
+        .includes(search)
 
         ||
 
-        note.content.toLowerCase().includes(search)
+        note.content.toLowerCase()
+        .includes(search)
     );
 
     if(filtered.length === 0){
 
         container.innerHTML = `
             <div class="empty">
-                No notes found
+                No Notes Found
             </div>
         `;
 
@@ -331,6 +450,32 @@ function renderNotes(){
 
         div.className = "note";
 
+        let adminButtons = "";
+
+        if(isAdmin){
+
+            adminButtons = `
+
+                <div class="actions">
+
+                    <button
+                        class="btn-edit"
+                        onclick="editNote(${index})"
+                    >
+                        Edit
+                    </button>
+
+                    <button
+                        class="btn-danger"
+                        onclick="deleteNote(${index})"
+                    >
+                        Delete
+                    </button>
+
+                </div>
+            `;
+        }
+
         div.innerHTML = `
 
             <h3>${note.title}</h3>
@@ -341,23 +486,7 @@ function renderNotes(){
                 ${note.date}
             </div>
 
-            <div class="actions">
-
-                <button 
-                    class="btn-edit"
-                    onclick="editNote(${index})"
-                >
-                    Edit
-                </button>
-
-                <button 
-                    class="btn-danger"
-                    onclick="deleteNote(${index})"
-                >
-                    Delete
-                </button>
-
-            </div>
+            ${adminButtons}
         `;
 
         container.appendChild(div);
@@ -390,15 +519,15 @@ function editNote(index){
 
 function deleteNote(index){
 
-    const confirmDelete = confirm(
+    const ok = confirm(
         "Delete this note?"
     );
 
-    if(confirmDelete){
+    if(ok){
 
         notes.splice(index,1);
 
-        saveToLocal();
+        saveLocal();
 
         renderNotes();
     }
