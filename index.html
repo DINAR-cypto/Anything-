@@ -1,339 +1,244 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Funny MCQ Quiz</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Notes Admin Panel</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }body {
+  background: #f4f4f4;
+  display: flex;
+  min-height: 100vh;
 }
 
-body{
-    background:#0f172a;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    padding:20px;
+.sidebar {
+  width: 250px;
+  background: #1e293b;
+  color: white;
+  padding: 20px;
 }
 
-.container{
-    width:100%;
-    max-width:700px;
-    background:#1e293b;
-    border-radius:20px;
-    padding:25px;
-    box-shadow:0 0 20px rgba(0,0,0,0.4);
+.sidebar h2 {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.title{
-    text-align:center;
-    margin-bottom:20px;
+.sidebar ul {
+  list-style: none;
 }
 
-.title h1{
-    color:#38bdf8;
-    margin-bottom:10px;
+.sidebar ul li {
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #334155;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.title p{
-    color:#cbd5e1;
+.sidebar ul li:hover {
+  background: #475569;
 }
 
-.image-box{
-    text-align:center;
-    margin-bottom:20px;
+.main {
+  flex: 1;
+  padding: 20px;
 }
 
-.image-box img{
-    width:100%;
-    max-height:400px;
-    object-fit:cover;
-    border-radius:15px;
+.topbar {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.question-number{
-    color:#94a3b8;
-    margin-bottom:10px;
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.question{
-    font-size:24px;
-    margin-bottom:20px;
-    line-height:1.5;
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
 }
 
-.options{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.option{
-    background:#334155;
-    padding:15px;
-    border-radius:12px;
-    cursor:pointer;
-    transition:0.3s;
-    border:2px solid transparent;
+button:hover {
+  background: #1d4ed8;
 }
 
-.option:hover{
-    background:#475569;
+.notes {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
 }
 
-.option.selected{
-    background:#0ea5e9;
-    border-color:#38bdf8;
+.note {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: relative;
 }
 
-button{
-    width:100%;
-    padding:15px;
-    margin-top:20px;
-    border:none;
-    border-radius:12px;
-    background:#38bdf8;
-    color:white;
-    font-size:18px;
-    cursor:pointer;
+.note h3 {
+  margin-bottom: 10px;
+  color: #1e293b;
 }
 
-button:hover{
-    background:#0ea5e9;
+.note p {
+  color: #555;
 }
 
-.result{
-    text-align:center;
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: crimson;
+  padding: 6px 10px;
+  font-size: 12px;
 }
 
-.correct{
-    color:#22c55e;
+.delete-btn:hover {
+  background: darkred;
 }
 
-.wrong{
-    color:#ef4444;
-}
-
-.credit{
-    text-align:center;
-    margin-top:25px;
-    color:#94a3b8;
-    font-size:14px;
-}
-
-.credit span{
-    color:#38bdf8;
-    font-weight:bold;
-}
-
-</style>
+  </style>
 </head>
+<body>  <div id="loginPage" style="width:100%;display:flex;justify-content:center;align-items:center;height:100vh;background:#0f172a;">
+    <div style="background:white;padding:30px;border-radius:15px;width:350px;box-shadow:0 5px 15px rgba(0,0,0,0.2);">
+      <h2 style="text-align:center;margin-bottom:20px;">Admin Login</h2><input type="text" id="username" placeholder="Enter Username" />
+  <input type="password" id="password" placeholder="Enter Password" />
 
-<body>
+  <button style="width:100%;" onclick="login()">Login</button>
 
-<div class="container">
-
-    <div class="title">
-        <h1>Funny MCQ Quiz</h1>
-        <p>Select the correct answer and enjoy 😎</p>
-    </div>
-
-    <div id="quiz-box">
-
-        <div class="image-box">
-            <img src="photo.jpg" alt="Quiz Image">
-        </div>
-
-        <div class="question-number" id="question-number"></div>
-
-        <div class="question" id="question"></div>
-
-        <div class="options" id="options"></div>
-
-        <button onclick="submitAnswer()">
-            Submit Answer
-        </button>
-
-    </div>
-
-    <div class="credit">
-        Developed by <span>Dinar</span>
-    </div>
-
+  <p id="loginError" style="color:red;margin-top:10px;text-align:center;"></p>
 </div>
 
-<script>
+  </div>  <div id="adminPanel" style="display:none;width:100%;"><div class="sidebar">
+  <h2>Admin Panel</h2>
+  <ul>
+    <li>Dashboard</li>
+    <li>Create Note</li>
+    <li>All Notes</li>
+    <li onclick="logout()">Logout</li>
+  </ul>
+</div>
 
-const quizData = [
+<div class="main">
+  <div class="topbar" style="display:flex;justify-content:space-between;align-items:center;">
+    <h1>Secure Notes System</h1>
+    <button onclick="logout()">Logout</button>
+  </div>
 
-{
-question:"এই ব্যক্তি তার নাম কি?",
-options:[
-"শুধু আনাস",
-"কচি আনাস 😎"
-],
-answer:"কচি আনাস 😎"
-},
+  <div class="card">
+    <h2>Add New Note</h2>
 
-{
-question:"তার ফেমাস ডায়ালগ কোনটি?",
-options:[
-"ভাই আমি গেমে আসতেছি",
-"ভাই কারেন্ট নাই ,এখন গেম খেলতে পারবো না 😶"
-],
-answer:"ভাই কারেন্ট নাই ,এখন গেম খেলতে পারবো না 😶"
-}
+    <input type="text" id="title" placeholder="Enter note title" />
 
-];
+    <textarea id="content" rows="5" placeholder="Write your note here..."></textarea>
 
-let currentQuestion = 0;
-let score = 0;
-let selectedOption = null;
+    <button onclick="addNote()">Add Note</button>
+  </div>
 
-const questionEl =
-document.getElementById("question");
+  <div class="notes" id="notesContainer"></div>
+</div>
 
-const optionsEl =
-document.getElementById("options");
+  </div>  <script>
+    const ADMIN_USERNAME = 'admin';
+    const ADMIN_PASSWORD = '12345';
 
-const questionNumberEl =
-document.getElementById("question-number");
+    let notes = JSON.parse(localStorage.getItem('notes')) || [];
 
-const quizBox =
-document.getElementById("quiz-box");
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
-function loadQuestion(){
+      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        localStorage.setItem('isLoggedIn', 'true');
+        showAdminPanel();
+      } else {
+        document.getElementById('loginError').innerText = 'Invalid username or password';
+      }
+    }
 
-    selectedOption = null;
+    function logout() {
+      localStorage.removeItem('isLoggedIn');
+      location.reload();
+    }
 
-    const currentQuiz =
-    quizData[currentQuestion];
+    function showAdminPanel() {
+      document.getElementById('loginPage').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'flex';
+      renderNotes();
+    }
 
-    questionNumberEl.innerHTML =
-    "Question " +
-    (currentQuestion + 1)
-    + " of " +
-    quizData.length;
+    function saveNotes() {
+      localStorage.setItem('notes', JSON.stringify(notes));
+    }
 
-    questionEl.innerHTML =
-    currentQuiz.question;
+    function renderNotes() {
+      const container = document.getElementById('notesContainer');
+      container.innerHTML = '';
 
-    optionsEl.innerHTML = "";
+      notes.forEach((note, index) => {
+        container.innerHTML += `
+          <div class="note">
+            <button class="delete-btn" onclick="deleteNote(${index})">Delete</button>
+            <h3>${note.title}</h3>
+            <p>${note.content}</p>
+          </div>
+        `;
+      });
+    }
 
-    currentQuiz.options.forEach(option=>{
+    function addNote() {
+      const title = document.getElementById('title').value.trim();
+      const content = document.getElementById('content').value.trim();
 
-        const div =
-        document.createElement("div");
-
-        div.classList.add("option");
-
-        div.innerHTML = option;
-
-        div.onclick = ()=>{
-            selectOption(div,option);
-        };
-
-        optionsEl.appendChild(div);
-
-    });
-
-}
-
-function selectOption(element,option){
-
-    document.querySelectorAll(".option")
-    .forEach(el=>{
-        el.classList.remove("selected");
-    });
-
-    element.classList.add("selected");
-
-    selectedOption = option;
-}
-
-function submitAnswer(){
-
-    if(selectedOption === null){
-
-        alert("Please select an answer!");
-
+      if (title === '' || content === '') {
+        alert('Please fill all fields');
         return;
+      }
+
+      notes.push({ title, content });
+      saveNotes();
+      renderNotes();
+
+      document.getElementById('title').value = '';
+      document.getElementById('content').value = '';
     }
 
-    const correctAnswer =
-    quizData[currentQuestion].answer;
-
-    if(selectedOption === correctAnswer){
-        score++;
+    function deleteNote(index) {
+      notes.splice(index, 1);
+      saveNotes();
+      renderNotes();
     }
 
-    currentQuestion++;
-
-    if(currentQuestion < quizData.length){
-
-        loadQuestion();
-
-    }else{
-
-        showResult();
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      showAdminPanel();
     }
-
-}
-
-function showResult(){
-
-    let wrong =
-    quizData.length - score;
-
-    let percentage =
-    ((score / quizData.length) * 100)
-    .toFixed(0);
-
-    quizBox.innerHTML = `
-
-    <div class="result">
-
-        <h1>Quiz Completed 😎</h1>
-
-        <br>
-
-        <h2 class="correct">
-            Correct Answers: ${score}
-        </h2>
-
-        <br>
-
-        <h2 class="wrong">
-            Wrong Answers: ${wrong}
-        </h2>
-
-        <br>
-
-        <h2>
-            Final Score: ${percentage}%
-        </h2>
-
-        <button onclick="location.reload()">
-            Restart Quiz
-        </button>
-
-    </div>
-
-    `;
-}
-
-loadQuestion();
-
-</script>
-
-</body>
+  </script></body>
 </html>
