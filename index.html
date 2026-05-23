@@ -1,244 +1,143 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="bn">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Secure Notes Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>বল বল বিদ্যুৎ</title>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: linear-gradient(135deg, #141e30, #243b55);
       font-family: Arial, sans-serif;
-    }body {
-  background: #f4f4f4;
-  display: flex;
-  min-height: 100vh;
-}
+      overflow:hidden;
+    }
 
-.sidebar {
-  width: 250px;
-  background: #1e293b;
-  color: white;
-  padding: 20px;
-}
+    .card{
+      width:360px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border-radius:25px;
+      padding:35px;
+      text-align:center;
+      box-shadow:0 10px 35px rgba(0,0,0,0.4);
+      animation: popup 0.7s ease;
+      color:white;
+    }
 
-.sidebar h2 {
-  margin-bottom: 20px;
-  text-align: center;
-}
+    @keyframes popup{
+      from{
+        opacity:0;
+        transform:scale(0.7);
+      }
+      to{
+        opacity:1;
+        transform:scale(1);
+      }
+    }
 
-.sidebar ul {
-  list-style: none;
-}
+    .gif{
+      width:200px;
+      border-radius:20px;
+      margin-bottom:20px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.3);
+    }
 
-.sidebar ul li {
-  padding: 12px;
-  margin-bottom: 10px;
-  background: #334155;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+    h1{
+      font-size:28px;
+      line-height:1.5;
+      margin-bottom:30px;
+    }
 
-.sidebar ul li:hover {
-  background: #475569;
-}
+    .buttons{
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+    }
 
-.main {
-  flex: 1;
-  padding: 20px;
-}
+    button{
+      border:none;
+      padding:14px 25px;
+      border-radius:50px;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
 
-.topbar {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+    .yes{
+      background:#00ff99;
+      color:black;
+    }
 
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+    .definitely{
+      background:#ffd700;
+      color:black;
+    }
 
-input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-}
+    button:hover{
+      transform:scale(1.1);
+    }
 
-button {
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #1d4ed8;
-}
-
-.notes {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-}
-
-.note {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  position: relative;
-}
-
-.note h3 {
-  margin-bottom: 10px;
-  color: #1e293b;
-}
-
-.note p {
-  color: #555;
-}
-
-.delete-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: crimson;
-  padding: 6px 10px;
-  font-size: 12px;
-}
-
-.delete-btn:hover {
-  background: darkred;
-}
-
+    .creator{
+      margin-top:22px;
+      font-size:14px;
+      opacity:0.8;
+    }
   </style>
 </head>
-<body>  <div id="loginPage" style="width:100%;display:flex;justify-content:center;align-items:center;height:100vh;background:#0f172a;">
-    <div style="background:white;padding:30px;border-radius:15px;width:350px;box-shadow:0 5px 15px rgba(0,0,0,0.2);">
-      <h2 style="text-align:center;margin-bottom:20px;">Admin Login</h2><input type="text" id="username" placeholder="Enter Username" />
-  <input type="password" id="password" placeholder="Enter Password" />
 
-  <button style="width:100%;" onclick="login()">Login</button>
-
-  <p id="loginError" style="color:red;margin-top:10px;text-align:center;"></p>
-</div>
-
-  </div>  <div id="adminPanel" style="display:none;width:100%;"><div class="sidebar">
-  <h2>Admin Panel</h2>
-  <ul>
-    <li>Dashboard</li>
-    <li>Create Note</li>
-    <li>All Notes</li>
-    <li onclick="logout()">Logout</li>
-  </ul>
-</div>
-
-<div class="main">
-  <div class="topbar" style="display:flex;justify-content:space-between;align-items:center;">
-    <h1>Secure Notes System</h1>
-    <button onclick="logout()">Logout</button>
-  </div>
+<body>
 
   <div class="card">
-    <h2>Add New Note</h2>
 
-    <input type="text" id="title" placeholder="Enter note title" />
+    <!-- GIF -->
+    <img
+      class="gif"
+      src="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUydjlqMTR0cnEyOWQ1MnJxaHl6MzFpcHE4ZzFlOW15ZzZlb3BmMWVvYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jumeJnIWzLb6m9a025/giphy.gif"
+      alt="gif"
+    >
 
-    <textarea id="content" rows="5" placeholder="Write your note here..."></textarea>
+    <h1>
+      বল বল বিদ্যুৎ 😏<br>
+      গ্রক দিবি কিনা বল
+    </h1>
 
-    <button onclick="addNote()">Add Note</button>
+    <div class="buttons">
+
+      <button class="yes"
+        onclick="showMessage('Yes 😎')">
+        Yes
+      </button>
+
+      <button class="definitely"
+        onclick="showMessage('Definitely Yes 🔥')">
+        Definitely Yes
+      </button>
+
+    </div>
+
+    <div class="creator">
+      Created by Dinar
+    </div>
+
   </div>
 
-  <div class="notes" id="notesContainer"></div>
-</div>
-
-  </div>  <script>
-    const ADMIN_USERNAME = 'admin';
-    const ADMIN_PASSWORD = '12345';
-
-    let notes = JSON.parse(localStorage.getItem('notes')) || [];
-
-    function login() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-
-      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-        localStorage.setItem('isLoggedIn', 'true');
-        showAdminPanel();
-      } else {
-        document.getElementById('loginError').innerText = 'Invalid username or password';
-      }
+  <script>
+    function showMessage(text){
+      alert("তুই সঠিক উত্তর দিছস 😆\n" + text);
     }
+  </script>
 
-    function logout() {
-      localStorage.removeItem('isLoggedIn');
-      location.reload();
-    }
-
-    function showAdminPanel() {
-      document.getElementById('loginPage').style.display = 'none';
-      document.getElementById('adminPanel').style.display = 'flex';
-      renderNotes();
-    }
-
-    function saveNotes() {
-      localStorage.setItem('notes', JSON.stringify(notes));
-    }
-
-    function renderNotes() {
-      const container = document.getElementById('notesContainer');
-      container.innerHTML = '';
-
-      notes.forEach((note, index) => {
-        container.innerHTML += `
-          <div class="note">
-            <button class="delete-btn" onclick="deleteNote(${index})">Delete</button>
-            <h3>${note.title}</h3>
-            <p>${note.content}</p>
-          </div>
-        `;
-      });
-    }
-
-    function addNote() {
-      const title = document.getElementById('title').value.trim();
-      const content = document.getElementById('content').value.trim();
-
-      if (title === '' || content === '') {
-        alert('Please fill all fields');
-        return;
-      }
-
-      notes.push({ title, content });
-      saveNotes();
-      renderNotes();
-
-      document.getElementById('title').value = '';
-      document.getElementById('content').value = '';
-    }
-
-    function deleteNote(index) {
-      notes.splice(index, 1);
-      saveNotes();
-      renderNotes();
-    }
-
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      showAdminPanel();
-    }
-  </script></body>
+</body>
 </html>
